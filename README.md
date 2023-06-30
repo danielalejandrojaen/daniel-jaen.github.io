@@ -15,3 +15,6 @@
 // 1.complete all to-dos except 11 and 12   
 
 //portfolio page = > portfolio .html -->
+1) In terminal, type => git add -A
+2) In terminal, type => git commit -m "description"
+3) In terminal, type => git push    
