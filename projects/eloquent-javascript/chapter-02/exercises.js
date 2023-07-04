@@ -4,6 +4,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 function triangles() {
+//loop through 7 times 
+  for (let i = 0; i < 7; i++) {
+    
+    console.log('#'.repeat(i + 1));
+  }
 
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -11,7 +16,27 @@ function triangles() {
 ////////////////////////////////////////////////////////////////////////////////
 
 function fizzBuzz() {
-  
+  // loop through 100 times starting at 1
+  for (let i = 1; i < 16; i++) {
+    //if i divided by 3 and 5 has no remainder
+    if (i % 3 === 0 && i % 5 === 0) {
+      //log fizzbuzz
+      console.log('fizzbuzz')
+      //if i divided by 3 has no remainder
+    } else if (i % 3 === 0) {
+      //log fizz
+      console.log('fizz')
+      //if i divided by 5 has no remainder
+    } else if (i % 5 === 0) {
+      //log buzz
+      console.log('buzz')
+      //if none of the above are true
+    } else {
+      //log i
+      console.log(i);
+    }
+    
+  }  
 }
 
 ////////////////////////////////////////////////////////////////////////////////

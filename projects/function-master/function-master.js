@@ -19,24 +19,20 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
 function valuesToString(object) {
-
-// let newstring = '';
-//     for (var values in object) {
-//         if (typeof values === 'string') {
-//             newstring = 
-//         }
-//     }
-//     return newstring;
-    // let val = Object.values(object);
-    // let newstring;
-    // for (let i = 0; i < val.length; i++) {
-    //     if (typeof val[i] === 'string') {
-    //         newstring = val[i].join(' ')
-    //     }
-    // }
-    // return newstring;
+    //create a new string array to push the values of the object into
+    let newString = [];
+    //loop through the obj
+    for (let key in object) {
+        //if type of key is a string
+        if (typeof object[key] === 'string') {
+            //push the value of the key into the new string 
+            newString.push(object[key]);
+        }
+    }
+    //return the newstring joined by ' '
+    return newString.join(' ');
+    
 }
 //////////////////////////////////////////////////////////////////////
 // Function 4 - Array or Object //////////////////////////////////////
@@ -97,29 +93,26 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 // Function 8 - Profile Info /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-let dan = {
-    name: 'dan',
-    species: 'Human'
-}
+
 function profileInfo(object) {
-    for (let key in object) {
-        for (let value in object) {
-            if (key === 'name' && value === 'species') {
-                return true;
-            }
-        }
-        
+    if (object.name && object.species) {
+        return object.name[0].toUpperCase() + object.name.slice(1) + ' is a ' + object.species[0].toUpperCase() + object.species.slice(1);
     }
-
 }
-console.log(profileInfo(dan));  
-
 //////////////////////////////////////////////////////////////////////
 // Function 9 - Maybe Noises /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-
+    let newString = [];
+    if (Array.isArray(object.noises) && object.noises.length > 0) {
+       for (let i = 0; i < object.noises.length; i++) {
+            newString.push(object.noises[i]);
+       }
+       return newString.join(' ');
+    } else {
+        return 'there are no noises'
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -127,7 +120,18 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
-
+    //split the string by word by splitting with a param of ' '
+let splitStr = string.split(' ');
+//loop through the split string using .length now that its an array
+for (let i = 0; i < splitStr.length; i++) {
+    //if splitstr index i includes the word param
+        if (splitStr[i].includes(word)) {
+            //return true
+            return true;
+        }
+    }
+    //return false by default outside the loop
+    return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -135,7 +139,10 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+    //using the push method, push name into the friends array in object targeted by dot notation
+    object.friends.push(name);
+    //return obj
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -143,7 +150,16 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
-
+    //loop through the friend object with a for in loop NOT for of as its not an array 
+    for (let friend in object) {
+        //if object.friends includes name param
+        if (object.friends.includes(name)) {
+            //return true
+            return true
+        }//exit
+    }  //the loop
+    //return false
+ return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -151,15 +167,52 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+    //create the return arr
+    let returnArr = []
+    /* REMEMBER
+    the data being passed is an array of objects ie
+    var data = [
+        {name: "Jimmy", friends:["Sara", "Liza"]},
+        {name: "Bob", friends:[]},
+        {name: "Liza", friends: ["Jimmy"]},
+        {name: "Sara", friends: ["Jimmy"]}
+      ];
+    */
+   //loop through the array
+    for (let i = 0; i < array.length; i++) {
+        //using if statement if array index i (targets the specific index of data) bracket [friends] targets the friends prop of that data (ie friends array)
+        //does NOT include the name being passed
+        let iName = array[i]['name'];//dec these variables for simplicity
+        let iFriends = array[i]['friends'];
+        if (!iFriends.includes(name) && iName !== name) {
+            //push the result to the return array
+            returnArr.push(iName);
+        }
+        //return returnArr outside of loop
+    }
+    return returnArr;
 }
-
+// console.log(nonFriends('Jimmy', data));
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+    // Should take an object, a key and a value. Should update the property <key> on
+    //  <object> with new <value>. If <key> does not exist on <object> create it.",  
+    //loop through the object
+    for (let prop in object) {
+        //if the prop === key ie it exists
+        if (prop === key) {
+            //reassign the prop to value
+            object[prop] = value;
+        } else {
+            //else if the prop does not exist
+            object[key] = value;
+        }
+    }
+    //return the object
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -167,7 +220,24 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
-
+    // "removeProperties() : Should take an object and 
+    // an array of strings. Should remove any properties on 
+    // <object> that are listed in <array>", function(assert){
+    //     var data = {a: "one", b: "two", "hokey": false};
+    //     removeProperties(data, ["a","hokey"]);
+    //     assert.deepEqual(data, {b: "two"});
+    
+    //loop through the object first, 
+    for (let key in object) {
+        //loop through the array
+        for (let i = 0; i < array.length; i++) {
+            //if the key = array index i
+            if (key === array[i]) {
+                //delete the key
+                delete object[key];
+            }
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -175,6 +245,20 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
+    //should take an array and return an array with all the duplicates removed
+    
+    //create a new array
+    let newArr = [];
+    //loop through  array
+    for (let i = 0; i < array.length; i++) {
+        //if the new array does NOT include the array index i meaning the value
+        if (!newArr.includes(array[i])) {
+            //push the array index i to the new array
+            newArr.push(array[i]);
+        }
+    }
+    //return the new array
+    return newArr;
 
 }
 
