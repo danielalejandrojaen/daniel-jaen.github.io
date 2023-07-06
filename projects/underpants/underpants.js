@@ -102,15 +102,21 @@ _.typeOf = function(value) {
 */
 
 _.first = function(array, number) {
-  if (!Array.isArray(array) || number <= 0) {
-    return [];
-  } else if (number > array.length) {
-    return array;
-  } else if (number !== 'number') {
-    return array[0]
-  } else {
+    //if array is not an array or number is less than 0
+    if (!Array.isArray(array) || number < 0) {
+        //return an empty array
+        return [];
+        //else if typeof number is not a number
+    } else if (typeof number !== 'number') {
+        ///return the first index of the array
+        return array[0];
+        ///else if number is greater than the length of the array
+    } else if (number > array.length) {
+        //return array
+        return array;
+    }
+    //return the first number of items in the array
     return array.slice(0, number);
-  }
 }
 
 /** _.last
@@ -130,7 +136,24 @@ _.first = function(array, number) {
 *   _.last(["a", "b", "c"], 1) -> "c"
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
-
+_.last = (array, number) => {   
+    //if array is not an array or number is less than 0
+    if (!Array.isArray(array) || number < 0) {
+        //return an empty array
+        return [];
+        //else if typeof number is not a number
+    } else if (typeof number !== 'number') {
+        ///return the last index of the array
+        return array[array.length - 1];
+        ///else if number is greater than the length of the array
+    } else if (number > array.length) {
+        //return array
+        return array;
+    }
+    //return the last number of items in the array by using slice with a neg number to begin from the end
+    return array.slice(-number);
+ 
+}
 
 /** _.indexOf
 * Arguments:
@@ -203,7 +226,24 @@ _.contains = function(array, value) {
 *   _.each(["a","b","c"], function(e,i,a){ console.log(e)});
 *      -> should log "a" "b" "c" to the console
 */
-
+_.each = (collection, func) => {
+    //if collection is an array
+    if (Array.isArray(collection)) {
+        //loop through the collection array
+        for (let i = 0; i < collection.length; i++) {
+            //call func with the arguments element ind and collection
+            func(collection[i], i, collection);
+        }
+        //else if collection is an obj
+    } else if (typeof collection === 'object') {
+        //loop through the object using a for in loop,
+        for (let key in collection) {
+            //call func with the arguments  value, prop key, and collection
+            func(collection[key], key, collection);
+        }
+    }
+  
+}
 
 
 /** _.unique
@@ -216,12 +256,18 @@ _.contains = function(array, value) {
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 _.unique = function(array) {
+    //create our return arr
     let output = [];
+    //loop through our input array
     for (let i = 0; i < array.length; i++) {
-        if (!array.indexOf(array, i)) {
+        //if indexOf array and arr ind i is eq to 1
+        if (_.indexOf(array, array[i]) === i) {
+            //push array ind i to output
             output.push(array[i]);
         }
     }
+    //return output
+    return output;
 }
 
 
@@ -240,6 +286,15 @@ _.unique = function(array) {
 * Extra Credit:
 *   use _.each in your implementation
 */
+// _.filter = (array, func) => {
+// //     //create an output arr
+// //     let output = [];
+// //     for (let i = 0; i < array.length; i++) {
+// //         func(array[i], i, array) 
+// //             return 
+// //         }
+// //     }
+// // }
 
 
 /** _.reject
@@ -291,6 +346,33 @@ _.unique = function(array) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
+_.map = (collection, func) => {
+    //if collection is an array
+    if (Array.isArray(collection)) {
+        //create our output array
+        let output = [];
+        //loop through the collection array
+        for (let i = 0; i < collection.length; i++) {
+            //push the func with params of collection[i], i and collection (element index and collection)
+            output.push(func(collection[i], i, collection));
+        }
+        //return output
+        return output;
+    }
+    //if type of collection === object
+    if (typeof collection === 'object') {
+        //create output
+        let output = [];
+        //loop through collection obj with for in loop
+        for (let key in collection) {
+            //push the func with the element index and coll to the output arr
+            output.push(func(collection[key], key, collection));
+        }
+        //return output
+        return output;
+    }
+ 
+}
 
 
 /** _.pluck
@@ -303,6 +385,16 @@ _.unique = function(array) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+_.pluck = (array, prop) => {
+    //loop through the array of objs
+    for (let i = 0; i < array.length; i++) {
+        //return map with array, func with params of element, ind and array, 
+        return _.map(array, function(element, index, array) {
+            //return element prop
+            return element[prop];
+        });
+    }
+ }
 
 
 /** _.every
@@ -383,6 +475,20 @@ _.unique = function(array) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = (obj1, ...obj2) => {
+    //loop through obj2 with a for loop because
+    for (let i = 0; i < obj2.length; i++) {
+        //loop through obj2[i]
+        for (let key in obj2[i]) {
+            //assign obj1[key] to obj2[i][key]
+            obj1[key] = obj2[i][key];
+        }
+    }
+    //return obj1
+    return obj1;
+}
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

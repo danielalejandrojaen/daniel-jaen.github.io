@@ -2,7 +2,7 @@
 // Function 1 - Object Values ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-const { toUpper } = require("lodash");
+// const { toUpper } = require("lodash");
 
 function objectValues(object) {
     return Object.values(object);
