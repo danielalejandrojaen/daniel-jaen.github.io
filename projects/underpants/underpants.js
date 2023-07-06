@@ -485,7 +485,7 @@ _.pluck = (array, prop) => {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 _.some = (collection, func) => {
-    
+    //if typeof func is not a function
     if (typeof func !== 'function') {
         //loop through coll
         for (let i = 0; i < collection.length; i++) {
@@ -495,8 +495,9 @@ _.some = (collection, func) => {
                 return true;
             }
         }
+        //else return false
         return false;
-};
+    };
     //if collection is an array
     if (Array.isArray(collection)) {
         // loop through coll arr

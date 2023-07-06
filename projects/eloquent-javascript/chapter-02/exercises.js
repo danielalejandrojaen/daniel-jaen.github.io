@@ -3,50 +3,74 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
-//loop through 7 times 
-  for (let i = 0; i < 7; i++) {
+// function triangles() {
+// //loop through 7 times 
+//   for (let i = 0; i < 7; i++) {
     
-    console.log('#'.repeat(i + 1));
-  }
+//     console.log('#'.repeat(i + 1));
+//   }
 
-}
-////////////////////////////////////////////////////////////////////////////////
-// fizzBuzz ////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+// }
+// ////////////////////////////////////////////////////////////////////////////////
+// // fizzBuzz ////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////
 
-function fizzBuzz() {
-  // loop through 100 times starting at 1
-  for (let i = 1; i < 16; i++) {
-    //if i divided by 3 and 5 has no remainder
-    if (i % 3 === 0 && i % 5 === 0) {
-      //log fizzbuzz
-      console.log('fizzbuzz')
-      //if i divided by 3 has no remainder
-    } else if (i % 3 === 0) {
-      //log fizz
-      console.log('fizz')
-      //if i divided by 5 has no remainder
-    } else if (i % 5 === 0) {
-      //log buzz
-      console.log('buzz')
-      //if none of the above are true
-    } else {
-      //log i
-      console.log(i);
-    }
+// function fizzBuzz() {
+//   // loop through 100 times starting at 1
+//   for (let i = 1; i < 16; i++) {
+//     //if i divided by 3 and 5 has no remainder
+//     if (i % 3 === 0 && i % 5 === 0) {
+//       //log fizzbuzz
+//       console.log('fizzbuzz')
+//       //if i divided by 3 has no remainder
+//     } else if (i % 3 === 0) {
+//       //log fizz
+//       console.log('fizz')
+//       //if i divided by 5 has no remainder
+//     } else if (i % 5 === 0) {
+//       //log buzz
+//       console.log('buzz')
+//       //if none of the above are true
+//     } else {
+//       //log i
+//       console.log(i);
+//     }
     
-  }  
-}
+//   }  
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
+function drawChessboard(size) { 
+    let output = [];
+    let strConverted;
+    let hash = '#';
+    let space = ' ';
+    //loop through lines in outer loop 8 times
+    for (let lines = 1; lines <= size; lines++) {
+      //second loop for characters up to the size param
+      for (let chars = 1; chars <= size; chars++) {
+        //if the line + character result div by 2 has no remainder
+        if ((lines + chars) % 2 === 0) {
+          //output . push space 
+          output.push(space);
+        } else {
+          //output . push hash
+          output.push(hash);
+        }
+      }
+      if (lines < size) {
+        output.push('\n');
+      }
+     strConverted = output.join('');
+    }
+    console.log(strConverted);
 
-}
 
+  }
+drawChessboard(8);
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
