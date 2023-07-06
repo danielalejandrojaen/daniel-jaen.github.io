@@ -42,3 +42,17 @@
 //         return false
 //     }
 // }
+
+const partition = (arr, func) => {
+    let newArr = [];
+    let newArr2 = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {
+            newArr.push(arr[i]);
+        } else {
+            newArr2.push(arr[i]);
+        }
+    }
+    return [newArr, newArr2];
+    
+}

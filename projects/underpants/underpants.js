@@ -295,7 +295,20 @@ _.unique = function(array) {
 // //         }
 // //     }
 // // }
-
+_.filter = (array, func) => {
+    //create an output arr
+    let output = [];
+    // loop through the array
+    for (let i = 0; i < array.length; i++) {
+        //if func array element + index + array is true
+        if (func(array[i], i, array)) {
+            //push arr ind i(element) to the output
+            output.push(array[i]);
+    }
+}
+//return output
+return output;
+};
 
 /** _.reject
 * Arguments:
@@ -309,7 +322,19 @@ _.unique = function(array) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+_.reject = (array, func) => {
+    //create an output
+    let output = [];
+    //loop through the array
+    for (let i = 0; i < array.length; i++) {
+        //if func array element + index + array is false
+        if (!func(array[i], i, array)) {
+            //push arr ind i(element) to the output
+            output.push(array[i]);
+        }
+    }
+    return output;
+};
 
 /** _.partition
 * Arguments:
@@ -329,7 +354,27 @@ _.unique = function(array) {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
+_.partition = (array, func) => {
+    //create an output
+    let output = [];
+    //create a truthy arr
+    let truthy = [];
+    //create a falsy arr
+    let falsy = [];
+    //loop through the arr
+    for (let i = 0; i < array.length; i++) {
+        //if func array ele + ind + array is true
+        if (func(array[i], i, array)) {
+            //push arr ind i to truthy
+            truthy.push(array[i]);
+            //else push it to falsy
+        } else {
+            falsy.push(array[i]);
+        }
+    }
+    //return truthy and falsy in an array output
+    return [truthy, falsy];
+};
 
 /** _.map
 * Arguments:
@@ -439,6 +484,49 @@ _.pluck = (array, prop) => {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = (collection, func) => {
+    
+    if (typeof func !== 'function') {
+        //loop through coll
+        for (let i = 0; i < collection.length; i++) {
+            //if coll[i] is true
+            if (collection[i]) {
+                //return true
+                return true;
+            }
+        }
+        return false;
+};
+    //if collection is an array
+    if (Array.isArray(collection)) {
+        // loop through coll arr
+        for (let i = 0; i < collection.length; i++) {
+            //if func with params of coll[i], i and coll is true
+            if (func(collection[i], i, collection)) {
+                //return true
+                return true;
+            }
+        };
+        //return false
+        return false;
+    }
+    //if collection is an obj
+    if (typeof collection === 'object') {
+        //loop through the call obj
+        for (let key in collection) {
+            //if func with element, index and coll is true
+            if (func(collection[key], key, collection)) {
+                //return true
+                return true;
+            }
+        };
+        //return false
+        return false;
+    };
+    //if func is not given return true if at least one element is truthy
+  
+};
+
 
 
 /** _.reduce
