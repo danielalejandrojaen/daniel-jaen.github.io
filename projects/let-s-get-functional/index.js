@@ -22,16 +22,37 @@ var _ = require('underbar');
  */
 
 var maleCount = function(array) {
-
+    let males = _.filter(array, function(customer) {
+        return customer.gender === 'male'; //returns true if customer is male
+    }); // [<male>, <male>, <male>]
+ return males.length;
 };
 
 var femaleCount;
 
-var oldestCustomer;
+var oldestCustomer = function(array) {
+    let oldest = _.reduce(array, function(accumulator, current) {
+        if (accumulator.age > current.age) {
+            return accumulator;
+        } else {
+            return current;
+        }
+        //invokes seed, seed is undefined,
+        //result = {name: 'Adele Mullin}
+        //1
+            //result = func({name: 'Adele Mullin' }, {name: 'Olga Newton' });
+            //determine if accumulator is older than current,
+                //if true return accumulator
+            //else
+                //return current
+
+    });
+};
+
 
 var youngestCustomer;
 
-var averageBalance;
+var averageBalance; //skip till monday
 
 var firstLetterCount;
 
