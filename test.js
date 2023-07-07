@@ -41,18 +41,61 @@
 //     } else {
 //         return false
 //     }
+// // }
+
+// const partition = (arr, func) => {
+//     let newArr = [];
+//     let newArr2 = [];
+//     for (let i = 0; i < arr.length; i++) {
+//         if (func(arr[i])) {
+//             newArr.push(arr[i]);
+//         } else {
+//             newArr2.push(arr[i]);
+//         }
+//     }
+//     return [newArr, newArr2];
+    
 // }
 
-const partition = (arr, func) => {
-    let newArr = [];
-    let newArr2 = [];
-    for (let i = 0; i < arr.length; i++) {
-        if (func(arr[i])) {
-            newArr.push(arr[i]);
-        } else {
-            newArr2.push(arr[i]);
-        }
-    }
-    return [newArr, newArr2];
-    
+const pants = {
+    waist: '15in', //measure flat
+    rise: 'NA',//the gooch seam to the top
+    hip: 'NA', //thigh ish area from left to right
+    inseam: 'NA' //measure from the bottom seam of the pant let all the way to the crotch area
+
+}
+
+const shorts = {
+    waist: 'NA', //if stretchy, measure with no stretch, then to a comfortable stretch not overdoing it and measure the difference
+    rise: 'NA', //gooch seam intersection to the top
+    hip: 'NA', //widest part usually
+    inseam: 'NA' // can do but not necessary
+};
+
+const skirt = {
+    waist: 'NA', //one corner to the end
+    length: 'NA', // top to bottom in middle
+    hip: 'na' //widest section, NOTE if skirt is stretchy, no hip measurement just hip and length
+}
+
+const joggers = {
+    waist: 'NA', //lay flat, note diff in comfortable stretch to no stretch
+    rise: 'NA',
+    hip: 'NA', //widest part
+    inseam: 'NA' //
+}
+
+const dress = {
+    pit2Pit: 'na', //legit the pit to pit, also chest measurement 
+    waist:  'na', //waist area more towards the middle
+    hip: 'na', //widest part
+    length: 'na' //top to bottom, some say top of the shoulder strap to bottom, if dress has backline that goes higher, sometimes people do that, specify where you're measuring from
+
+}
+
+const buttonDowns = {
+    length: 'NA', //can be from neck back to front bottom or otherwise, specify in comment
+    waist: 'NA', //center
+    pit2Pit: 'NA', //pit2pit
+    arm: 'NA' //long sleeve inseam measurement if folded and not normally, make sure to unfold
 }

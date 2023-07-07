@@ -463,8 +463,51 @@ _.pluck = (array, prop) => {
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 _.every = (collection, func) => {
-    
-};
+    if (func === undefined) {
+        //loop through the collection
+        for (let i = 0; i < collection.length; i++) {
+            //if collection[i] is falsey
+            if (!collection[i]) {
+                //return false
+                return false;
+            }
+        }
+        //return true
+        return true;
+    }
+    //create an output
+    let output = [];
+    //if collection is an array
+    if (Array.isArray(collection)) {
+        //loop through the collection array
+        for (let i = 0; i < collection.length; i++) {
+            //push the func with params of collection[i], i and collection (element index and collection)
+            output.push(func(collection[i], i, collection));
+        }
+        //return output
+    }
+    //if type of collection === object
+    if (typeof collection === 'object') {
+        //create output
+        let output = [];
+        //loop through collection obj with for in loop
+        for (let key in collection) {
+            //push the func with the element index and coll to the output arr
+            output.push(func(collection[key], key, collection));
+        }
+        //return output
+    }
+    //if output includes false
+    if (output.includes(false)) {
+        //return false
+        return false;
+    }
+    //return true
+    return true;
+
+
+}
+
 
 /** _.some
 * Arguments:
