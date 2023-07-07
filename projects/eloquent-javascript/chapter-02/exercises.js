@@ -44,33 +44,62 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 function drawChessboard(size) { 
-    let output = [];
-    let strConverted;
-    let hash = '#';
-    let space = ' ';
-    //loop through lines in outer loop 8 times
-    for (let lines = 1; lines <= size; lines++) {
-      //second loop for characters up to the size param
-      for (let chars = 1; chars <= size; chars++) {
-        //if the line + character result div by 2 has no remainder
-        if ((lines + chars) % 2 === 0) {
-          //output . push space 
-          output.push(space);
-        } else {
-          //output . push hash
-          output.push(hash);
-        }
+  //create output array
+  let output = [];
+  //create string converted variable
+  let strConverted;
+  //create hash variable
+  let hash = '#';
+  //create space variable
+  let space = ' ';
+  //loop through lines in outer loop 8 times
+  for (let lines = 1; lines <= size; lines++) {
+    //second loop for characters up to the size param
+    for (let chars = 1; chars <= size; chars++) {
+      //if the line + character result div by 2 has no remainder
+      if ((lines + chars) % 2 === 0) {
+        //output . push space 
+        output.push(space);
+      } else {
+        //output . push hash
+        output.push(hash);
       }
-      if (lines < size) {
-        output.push('\n');
-      }
-     strConverted = output.join('');
     }
-    console.log(strConverted);
-
-
+    if (lines < size) {
+      output.push('\n');
+    }
   }
-drawChessboard(8);
+  strConverted = output.join('');
+  console.log(strConverted);
+}
+// drawChessboard(8);
+
+//     let output = [];
+//     let strConverted;
+//     let hash = '#';
+//     let space = ' ';
+//     //loop through lines in outer loop 8 times
+//     for (let lines = 1; lines <= size; lines++) {
+//       //second loop for characters up to the size param
+//       for (let chars = 1; chars <= size; chars++) {
+//         //if the line + character result div by 2 has no remainder
+//         if ((lines + chars) % 2 === 0) {
+//           //output . push space 
+//           output.push(space);
+//         } else {
+//           //output . push hash
+//           output.push(hash);
+//         }
+//       }
+//       if (lines < size) {
+//         output.push('\n');
+//       }
+//     }
+//     strConverted = output.join('');
+//     console.log(strConverted);
+
+//   }
+// drawChessboard(8);
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

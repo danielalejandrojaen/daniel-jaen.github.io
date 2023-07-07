@@ -2,7 +2,9 @@
 // min /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function min() {
+function min(num1, num2) {
+  //return math.min of num1, num2
+  return Math.min(num1, num2);
 
 }
 
@@ -10,23 +12,61 @@ function min() {
 // isEven //////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function isEven() {
-
+function isEven(number) {
+  //if number divided by 2 === 0,
+  if (number % 2 === 0) {
+    //return true
+    return true;
+    //else return false
+  } else {
+    return false;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // countChars //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countChars() {
-
+function countChars(string, number) {
+  //init count variable
+  let count = 0;
+  //loop through the string
+  for (let i = 0; i < string.length; i++) {
+    //if string[i] === number 
+    if (string[i] === number) {
+      //count += 1
+      count += 1
+    }
+  }
+  //return count outside the loop
+  return count;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // countBs /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countBs() {
+
+
+
+
+function countBs(string) {
+  //create a count
+  let count = 0;
+  
+  //convert string to lowercase to match 
+  let lowerString = string.toLowerCase();
+  
+  //loop through the string 
+  for (let i = 0; i < lowerString.length; i++) {
+    // if lowercased string 'b' 
+    if (lowerString[i] === 'b') {
+      //count += 1
+      count += 1
+    }
+  }
+  //return count
+  return count;
 
 }
 
