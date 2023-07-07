@@ -462,7 +462,9 @@ _.pluck = (array, prop) => {
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
-
+_.every = (collection, func) => {
+    
+};
 
 /** _.some
 * Arguments:
@@ -548,6 +550,37 @@ _.some = (collection, func) => {
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
+_.reduce = (array, func, seed) => {
+let result;
+//if seed is undefined
+if (seed === undefined) {
+    //assign seed to array[0]
+    result = array[0];
+    //start at one as we're moving past from the 0 index
+    for (let i = 1; i < array.length; i++) {
+        result = func(result, array[i], i);
+        }
+    } else {
+        //assign seed to result
+        result = seed;
+        //loop through array
+        for (let i = 0; i < array.length; i++) {
+            result = func(result, array[i], i);
+        }
+    }   
+    return result;
+};
+
+//using reduce to return the sum of all the values in the array
+// var example = _.reduce([1, 2, 3], function(accumulator, current) {
+//     return accumulator + current;
+// }, 0);// -> 6
+// // // | seed value
+// console.log(example);
+//map, filter and reduce all take in a collection and have a callback func
+//map => [1, 2] => [2, 4] (array)
+//filter => [1, 2, 3] => [2] (array)
+//reduce => iterates through an input array, calling a callback function to accumulate a single return
 
 
 /** _.extend
