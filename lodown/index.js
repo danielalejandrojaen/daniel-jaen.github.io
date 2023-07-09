@@ -322,11 +322,55 @@ const pluck = (array, property) => {
 module.exports.pluck = pluck;
 
 /**
- * every
- * 
+ * every: Function designed to call a Function on every element of <collection>
+ * @param {Array} collection: Function takes in an array to loop through 
+ * @param {Function} action: Function designed to be called on each element of the array
  */
 const every = (collection, action) => {
+    //if func is undefined
+    if (func === undefined) {
+        //loop through the collection
+        for (let i = 0; i < collection.length; i++) {
+            //if collection[i] is falsey
+            if (!collection[i]) {
+                //return false
+                return false;
+            }
+        }
+        //return true
+        return true;
+    }
+    //create an output
+    let output = [];
+    //if collection is an array
+    if (Array.isArray(collection)) {
+        //loop through the collection array
+        for (let i = 0; i < collection.length; i++) {
+            //push the func with params of collection[i], i and collection (element index and collection)
+            output.push(func(collection[i], i, collection));
+        }
+        //return output
+    }
+    //if type of collection === object
+    if (typeof collection === 'object') {
+        //create output
+        let output = [];
+        //loop through collection obj with for in loop
+        for (let key in collection) {
+            //push the func with the element index and coll to the output arr
+            output.push(func(collection[key], key, collection));
+        }
+        //return output
+    }
+    //if output includes false
+    if (output.includes(false)) {
+        //return false
+        return false;
+    }
+    //return true
+    return true;
 }
+module.exports.every = every
 
 /**
  * some: Function designed to take in a Collection and a Function and return true if at least one element in the <collection> returns true when passed to the <function>
@@ -379,10 +423,31 @@ const some = (collection, action) => {
 module.exports.some = some;
 
 /**
- * reduce:
+ * reduce: Function designed to take in an Array, a Function and a Seed and return the value of the final function call
+ * @param {Array} array: Function takes in an array to loop through
+ * @param {Function} action: Function designed to be called on each element of the array
  */
-
-
+const reduce = (array, action, seed) => {
+    let result;
+    //if seed is undefined
+    if (seed === undefined) {
+        //assign seed to array[0]
+        result = array[0];
+        //start at one as we're moving past from the 0 index
+        for (let i = 1; i < array.length; i++) {
+            result = func(result, array[i], i);
+            }
+        } else {
+            //assign seed to result
+            result = seed;
+            //loop through array
+            for (let i = 0; i < array.length; i++) {
+                result = func(result, array[i], i);
+            }
+        }   
+        return result;
+    }
+    module.exports.reduce = reduce;
 /**
  * extend: Function designed to take in an Object and an unlimited amount of other Objects and return the first Object with all the properties of the other Objects
  * @param {Object} object: Function takes in an object so it can add properties to it

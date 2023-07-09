@@ -463,6 +463,7 @@ _.pluck = (array, prop) => {
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 _.every = (collection, func) => {
+    //if func is undefined
     if (func === undefined) {
         //loop through the collection
         for (let i = 0; i < collection.length; i++) {
@@ -613,18 +614,6 @@ if (seed === undefined) {
     }   
     return result;
 };
-
-//using reduce to return the sum of all the values in the array
-// var example = _.reduce([1, 2, 3], function(accumulator, current) {
-//     return accumulator + current;
-// }, 0);// -> 6
-// // // | seed value
-// console.log(example);
-//map, filter and reduce all take in a collection and have a callback func
-//map => [1, 2] => [2, 4] (array)
-//filter => [1, 2, 3] => [2] (array)
-//reduce => iterates through an input array, calling a callback function to accumulate a single return
-
 
 /** _.extend
 * Arguments:
