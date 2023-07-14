@@ -34,16 +34,45 @@ function reverseArrayInPlace() {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
+function arrayToList(array) {
+  let rest = null;
+  //because we're approaching building outward, 
+  //create a reverse for loop
+  for (let i = array.length - 1; i >= 0; i--) {
+    rest = {value: array[i], rest: rest}; //rest is just a key, being assigned to null at 0 it
+    //at 2nd iteration, the rest key will be assigned to the value from the first iteration {value: 3, rest: null}
+  }
+  return rest;
 }
-
+// console.log(arrayToList([1, 2, 3]));
+/*
+should approach by building out from 3,
+{
+  value: 1,
+  rest: {
+    value 2,
+    rest: {
+      value: 3,
+      rest: null
+    }
+  }
+}
+*/
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
+function listToArray(list, output = []) {
+  //base
+  if (list.rest === null) {
+    output.push(list.value);
+    return output;
+  };
 
+  //recursion
+  output.push(list.value);
+
+  return listToArray(list.rest, output);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

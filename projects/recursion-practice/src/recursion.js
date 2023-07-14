@@ -5,31 +5,103 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n) {
+  //base
+  //if n is negative return null
+  if (n < 0) {
+    //return null
+    return null;
+    
+  } else if(n === 0) {
+    //return 1
+    return 1;
+  };
+  //recursion
+  //return n * factorial n - 1
+  return  n  * factorial(n - 1);
 };
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 var sum = function(array) {
+  //base
+  //if array is empty return 0
+  if (array.length === 0) {
+    //return 0
+    return 0;
+  };
+  //recursion
+  //return array[0] + sum(array.slice(1))
+  return array[0] + sum(array.slice(1)); 
 };
+
+
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function(array) {
-};
+// var arraySum = function(array) {
+
+// };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  //base
+  //if n is 0 return true, ie if n is even (no modulo)
+  if (n === 0) {
+    //return true for evens
+    return true;
+  //if n is 1 return false ie if n is odd
+  } else if (n === 1) {
+    //return false
+    return false;
+  };
+  //recursion
+  //if n is less than 0
+  if (n < 0) {
+    //return isEven(n + 2) we add 2 to n to get to 0 or 1 for our neg nums
+    return isEven(n + 2);
+  };
+  //if n is greater than 0, we subtract 2 to get to 0 or 1 for our pos nums
+  //return isEven(n - 2)
+  return isEven(n - 2);
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  //base
+  if (n === 0) {
+    return 0;
+  }
+  //recursion
+  if (n < 0) {
+    return n + 1 + sumBelow(n + 1);
+  }
+  return n - 1 + sumBelow(n - 1);
 };
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+  //BASE
+  //if x and y are equal return empty array or if there are no integers in range, return empty array
+  if (x === y || x === y - 1 || x === y + 1) {
+    return [];
+  };
+  
+  //recursion
+
+  //if x is less than y
+  if (x < y) {
+    //return using bracket notations because we are returning an array with concat and recurse range(x + 1, y) using y as the base case
+    return [x + 1].concat(range(x + 1, y));
+    //else if x is greater than y
+  } else if (x > y) {
+    //return using bracket notations because we are returning an array with concat and recurse range(x - 1, y) using y as the base case
+    return [x - 1].concat(range(x - 1, y));
+  }
+
+
 };
 
 // 7. Compute the exponent of a number.

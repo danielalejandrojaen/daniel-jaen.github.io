@@ -28,7 +28,17 @@ var maleCount = function(array) {
  return males.length;
 };
 
-var femaleCount;
+const femaleCount = function(array) {
+    let filterFemales = _.filter(array, function(customer) { //returns array of females
+        return customer.gender === 'female';
+    });
+    //using reduce to count the number of females
+    let countFemales = _.reduce(filterFemales, function(accumulator, current) {
+        //
+        return accumulator + 1;
+    }, 0);
+    return countFemales;
+};
 
 var oldestCustomer = function(array) {
     let oldest = _.reduce(array, function(accumulator, current) {
@@ -37,15 +47,6 @@ var oldestCustomer = function(array) {
         } else {
             return current;
         }
-        //invokes seed, seed is undefined,
-        //result = {name: 'Adele Mullin}
-        //1
-            //result = func({name: 'Adele Mullin' }, {name: 'Olga Newton' });
-            //determine if accumulator is older than current,
-                //if true return accumulator
-            //else
-                //return current
-
     });
 };
 
