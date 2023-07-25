@@ -69,7 +69,9 @@ var youngestCustomer = function(array) {
     return youngest.name;
 };
 
-var averageBalance;
+var averageBalance = function(array) {
+};
+
 
 var firstLetterCount = function(array, letter) {
     //filter arr to find cust with names that start with letter input
@@ -120,9 +122,62 @@ var friendsCount = function(array, name) {
     return friends;
 }
 
-var topThreeTags;
+var topThreeTags = function(array) {
+    
+  
+}
 
-var genderCount;
+
+var genderCount = function(array) {
+    //using .filter method filter males
+    let males = _.filter(array, (customer) => {
+        return customer.gender === 'male';
+    }); //using .filter method, filter females
+    let females = _.filter(array, (customer) => {
+        return customer.gender === 'female';
+    }); //using .filter method, filter non-binary
+    let nonBinary = _.filter(array, (customer) => {
+        return customer.gender === 'non-binary';
+    });
+    //using .reduce count the # of males
+    let maleCount = males.reduce((acc, curr) => {
+        return acc + 1;
+    }, 0);
+    //using .reduce, count the # of females
+    let femaleCount = females.reduce((acc, curr) => {
+        return acc + 1;
+    }, 0);
+    //using reduce, count the # of non-Binary customers
+    let nonBinaryCount = nonBinary.reduce((acc, curr) => {
+        return acc + 1;
+    }, 0);
+    //return an object with the counts
+    return {
+        male: maleCount,
+        female: femaleCount,
+        'non-binary': nonBinaryCount
+    }
+}
+
+
+// Create a function called updateSubscription that takes in two parameters - object and 
+// updates. object represents a single subscription object; updates represents an array of arrays, where each subarray contains a property to update and a value to assign to that property. This function should use this updates array to access the necessary properties on the input object and assign the new values. updateSubscription should return the input object after modifying it.
+
+let updateSubscription = function(object, updates) {
+    //loop through the updates arr
+    for (let i = 0; i < updates.length; i++) {
+        //loop through the object
+        for (let key in object) {
+            //if the key matches the first element of the subarray
+            if (key === updates[i][0]) {
+                //assign the value of the second element of the subarray to the key
+                object[key] = updates[i][1];
+            }
+        }
+    }
+    //return the object
+    return object;
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

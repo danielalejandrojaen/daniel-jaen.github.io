@@ -115,7 +115,8 @@ function listToArray(list, output = []) {
 ////////////////////////////////////////////////////////////////////////////////
 
 function prepend(element, list) {
-  
+  //create a new list with the element as the value and list as the rest
+  return {value: element, rest: list};
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -150,8 +151,32 @@ function nth(list, n) {
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
-
+function deepEqual(x, y) {
+  //determine if x & y are NOT obj aka if its a simple data type
+  if (typeof x !== 'object' && typeof y !== 'object') {
+    //if it is, strict eq works
+    return x === y;
+  }
+  //determine if x OR y is not an obj
+  if (typeof x !== 'object' || typeof y !== 'object') {
+    //if it is, return false
+    return false;
+  }
+  //create arrays of each inputs keys
+  let xKeys = Object.keys(x);
+  let yKeys = Object.keys(y);
+  //easy to catch if arrays have diff lengths so deep eqs can't be true
+  if (xKeys.length !== yKeys.length) {
+    return false;
+  }
+  //iterate to determine if array keys match and values at keys match
+  for (let i = 0; i < xKeys.length; i++) {
+    //if ykeys does not incl xkeys i or if the values at the keys are not equal
+    if (!yKeys.includes(xKeys[i]) || !deepEqual(x[xKeys[i]], y[xKeys[i]])) {
+      return false;
+    }
+  }
+  return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
