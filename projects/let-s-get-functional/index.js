@@ -160,24 +160,6 @@ var genderCount = function(array) {
 }
 
 
-// Create a function called updateSubscription that takes in two parameters - object and 
-// updates. object represents a single subscription object; updates represents an array of arrays, where each subarray contains a property to update and a value to assign to that property. This function should use this updates array to access the necessary properties on the input object and assign the new values. updateSubscription should return the input object after modifying it.
-
-let updateSubscription = function(object, updates) {
-    //loop through the updates arr
-    for (let i = 0; i < updates.length; i++) {
-        //loop through the object
-        for (let key in object) {
-            //if the key matches the first element of the subarray
-            if (key === updates[i][0]) {
-                //assign the value of the second element of the subarray to the key
-                object[key] = updates[i][1];
-            }
-        }
-    }
-    //return the object
-    return object;
-}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
