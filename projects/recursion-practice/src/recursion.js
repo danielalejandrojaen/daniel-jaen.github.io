@@ -119,11 +119,12 @@ var exponent = function(base, exp) {
   //if exp is less than 0
   if (exp < 0) {
     //doesnt work but this is a bonus so whatever
-    return 1 / base * exponent(base, exp + 1);
+    return 1 / (base * exponent(base, -exp - 1));
+  } else {
+    return base * exponent(base, exp - 1);
   }
   //if exp is greater than 0
   //return base * exponent(base, exp - 1)
-  return base * exponent(base, exp - 1);
   
 };
 
@@ -169,8 +170,8 @@ var palindrome = function(string) {
   if (string[0].toLowerCase() !== string[string.length - 1].toLowerCase()) {
     return false;
   }
-  //return palindrome(string.slice(1, string.length - 1))
-  return palindrome(string.slice(1, string.length - 1));
+  //return palindrome(string.slice(1, string.length - 1)) and replace 
+  return palindrome(string.slice(1, string.length - 1).replace(/\s+/g, '').toLowerCase());
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -185,19 +186,16 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
-  //base
-  //if x or y is 0 return 0
+ 
   if (x === 0 || y === 0) {
     return 0;
   }
-  //recursion
-  //if x is less than 0
+
   if (x < 0) {
-    //return -y + multiply(x + 1, y)
+   
     return -y + multiply(x + 1, y);
   }
-  //if x is greater than 0
-  //return y + multiply(x - 1, y)
+ 
   return y + multiply(x - 1, y);
 };
 

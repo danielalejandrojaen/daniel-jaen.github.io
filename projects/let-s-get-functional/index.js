@@ -70,6 +70,18 @@ var youngestCustomer = function(array) {
 };
 
 var averageBalance = function(array) {
+    //use reduce to sum all balances
+    let sumBalance = _.reduce(array, function(acc, curr) {
+        //convert balance to number and remove $ and , 
+        let balance = parseFloat(curr.balance.replace(/[^0-9\.]+/g, ""));
+        //return acc + balance
+        return acc + balance;
+    }, 0);
+    //divide sumBalance by array.length to get average
+    let average = sumBalance / array.length;
+    //return average
+    return average;
+    
 };
 
 
@@ -123,9 +135,24 @@ var friendsCount = function(array, name) {
 }
 
 var topThreeTags = function(array) {
-    
-  
+    //use reduce to pull all the tags from the array
+    let allTags = _.reduce(array, function(accumulator, current) {
+        //concat the acc and curr tags
+        return accumulator.concat(current.tags);
+    }, []);
+    //count the occurences of each by creating an obj to hold the tag count
+    let tagCount = {};
+    allTags.forEach(function(tag) {
+        tagCount[tag] = (tagCount[tag] || 0) + 1;
+});
+    //sort the tagCount obj based on occ
+    let sortTags = Object.keys(tagCount).sort(function(a, b) {
+        return tagCount[b] - tagCount[a];
+    });
+    //return first 3 tags
+    return sortTags.slice(0, 3);
 }
+
 
 
 var genderCount = function(array) {
