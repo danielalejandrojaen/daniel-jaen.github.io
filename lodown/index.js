@@ -82,7 +82,8 @@ module.exports.typeOf = typeOf;
  
 /**
  * first: Function that takes in an Array and a Number and returns the first <number> items of <array>
- * @param {Array, Number}: Function takes in an array and a number
+ * @param {Array}: Function takes in an array
+ * @param {Number}: Function takes in a number
  * 
  * @returns {Array}: Function returns the first <number> items of <array>
  */
@@ -132,9 +133,10 @@ module.exports.last = last;
 
 /**
  * indexOf: Function that takes in an Array and a Value and returns the index of <array> that is the first occurrance of <value>
- * @param {Array, Value}: Function takes in an array and a value
+ * @param {Array}collection: Function takes in an array
+ * @param {Value}value: Function takes in a value
  * 
- * @returns {Number}: Function returns the index of <array> that is the first occurrance of <value>
+ * @returns {Number}: Function returns the index of <array> that is the first occurrance of <value>. If no value is found, returns -1
  */
 const indexOf = (array, value) => {
       //loop through the array
@@ -152,7 +154,8 @@ module.exports.indexOf = indexOf;
 
 /**
  * contains: Function that takes in an Array and a Value and returns true if <array> contains <value> and false if not
- * @param {Array, Value}: Function takes in an array and a value
+ * @param {Array}collection: Function takes in an array 
+ * @param {Value}value: Function takes in a value
  * 
  * @returns {Boolean}: Function returns true if <array> contains <value> and false if not
  */
@@ -219,7 +222,7 @@ module.exports.filter = filter;
  * @param {Array} collection: Function takes in an array that it is going to loop through
  * @param {Function} action: Function designed to filter through an array using boolean logic
  * 
- * @returns {Array}: Function returns a new array with the falsy boolean values
+ * @returns {Array}: Function returns a new array populated with the falsy values of the original array
  */
 const reject = (array, action) => {
    //create an output
@@ -325,6 +328,8 @@ module.exports.pluck = pluck;
  * every: Function designed to call a Function on every element of <collection>
  * @param {Array} collection: Function takes in an array to loop through 
  * @param {Function} action: Function designed to be called on each element of the array
+ * 
+ * @return {Boolean}: Function returns true if the function returns true for every element in the array, otherwise returns false
  */
 const every = (collection, action) => {
     //if func is undefined
@@ -426,6 +431,7 @@ module.exports.some = some;
  * reduce: Function designed to take in an Array, a Function and a Seed and return the value of the final function call
  * @param {Array} array: Function takes in an array to loop through
  * @param {Function} action: Function designed to be called on each element of the array
+ * @param {seed}: Function takes in a seed to be used as the first argument of the function call, the seed can be any data type. If no seed is given, the first element of the array will be used as the seed
  */
 const reduce = (array, action, seed) => {
     let result;
